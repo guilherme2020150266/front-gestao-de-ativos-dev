@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile.local
+        image: front-gestao-de-ativos
+        container_name: front-gestao-de-ativos
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./app/:/var/www/app/
+        # networks:
+        #     - front-gestao-de-ativos
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'db'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_ROOT_PASSWORD: 'password'
+        ports:
+            - '33066:3306'
+        expose:
+            - '3306'
+        volumes:
+           - front-gestao-de-ativos:/var/lib/mysql
+        # networks:
+        #     - front-gestao-de-ativos
+volumes:
+    front-gestao-de-ativos:
+networks:
+    front-gestao-de-ativos:
+        driver: bridge

@@ -1,0 +1,11 @@
+app:
+  enviroment: "staging"
+  name: "front-gestao-de-ativos"
+  version: "latest"
+  host: "gas.sjcc.dev"
+  rCpu: "0.25"
+  rMemory: "256Mi"
+  lCpu: "1"
+  lMemory: "1024Mi"
+  minReplicas: "1"
+  maxReplicas: "10"
